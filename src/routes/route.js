@@ -5,11 +5,11 @@ const router = express.Router();
 
 
 // // problem 1
-router.get('/movies', function (req, res){
-    // console.log("The path params in the request are : ", req.params)
-     const movies = ['Rang de basanti', 'The shining', 'Lord of the rings', 'Batman begins']
-     res.send(movies)
- })
+// router.get('/movies', function (req, res){
+//     // console.log("The path params in the request are : ", req.params)
+//      const movies = ['Rang de basanti', 'The shining', 'Lord of the rings', 'Batman begins']
+//      res.send(movies)
+//  })
  
 
 
@@ -65,33 +65,33 @@ router.get('/movies', function (req, res){
 
 
 // //  problem 5  
-// router.get('/films/:filmid', function (req, res) {
+router.get('/films/:filmid', function (req, res) {
 
-//         const films = [
-//             {
-//                 "id": 1,
-//                 "name": "The Shining"
-//             },
-//             {
-//                 "id": 2,
-//                 "name": "Incendies"
-//             },
-//             {
-//                 "id": 3,
-//                 "name": "Rang de Basanti"
-//            }, 
-//            {
-//                 "id": 4,
-//                 "name": "Finding Nemo"
-//     }]
+        const films = [
+            {
+                "id": 1,
+                "name": "The Shining"
+            },
+            {
+                "id": 2,
+                "name": "Incendies"
+            },
+            {
+                "id": 3,
+                "name": "Rang de Basanti"
+           }, 
+           {
+                "id": 4,
+                "name": "Finding Nemo"
+    }]
     
-//       const reqfilm=films.find(element=>element.id==req.params.filmid)
-//     if(reqfilm==undefined){
-//         res.send('no movie exists with this id')
-//     }
-//      res.send(reqfilm)
-//     //  console.log(reqfilm)
-//     })
+      const reqfilm=films.find(element=>element.id==req.params.filmid)
+    if(reqfilm==undefined){
+        res.send('no movie exists with this id')
+    }
+     res.send(reqfilm)
+    //  console.log(reqfilm)
+    })
 
 
 router.get('/test-me', function (req, res) {
