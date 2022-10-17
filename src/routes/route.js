@@ -2,6 +2,117 @@ const express = require('express');
 const abc = require('../introduction/intro')
 const router = express.Router();
 
+
+
+// // problem 1
+// router.get('/movies', function (req, res){
+//     // console.log("The path params in the request are : ", req.params)
+//      const movies = ['Rang de basanti', 'The shining', 'Lord of the rings', 'Batman begins']
+//      res.send(movies)
+//  })
+ 
+
+
+// //  problem 2
+//  router.get('/movies/:indexNumber', function (req, res){
+//     // console.log("The path params in the request are : ", req.params)
+//      const movies = ['Rang de basanti', 'The shining', 'Lord of the rings', 'Batman begins']
+//      const index = req.params.indexNumber
+//      res.send(movies[Number(index)])
+//  })
+
+
+// problem 3
+// const movies = ['Rang de basanti', 'The shining', 'Lord of the rings', 'Batman begins']
+// router.get('/Movies/:indexNumber', function(req,res)  {
+//     let index = req.params.indexNumber
+//     if(index>=movies.length){
+//         res.send('Please use a valid index')
+//     }
+//     else{
+//         res.send(movies[index])  
+//     }
+// })
+
+
+
+// //   problem 4
+// router.get('/films', function (req, res) {
+
+//         const films = [
+//             {
+//                 "id": 1,
+//                 "name": "The Shining"
+//             },
+//             {
+//                 "id": 2,
+//                 "name": "Incendies"
+//             },
+//             {
+//                 "id": 3,
+//                 "name": "Rang de Basanti"
+//            }, 
+//            {
+//                 "id": 4,
+//                 "name": "Finding Nemo"
+//     }]
+    
+//         res.send(films)
+//          })
+
+
+
+
+
+// //  problem 5  
+router.get('/films/:filmid', function (req, res) {
+
+        const films = [
+            {
+                "id": 1,
+                "name": "The Shining"
+            },
+            {
+                "id": 2,
+                "name": "Incendies"
+            },
+            {
+                "id": 3,
+                "name": "Rang de Basanti"
+           }, 
+           {
+                "id": 4,
+                "name": "Finding Nemo"
+    }]
+    
+      const reqfilm=films.find(element=>element.id==req.params.filmid)
+    if(reqfilm==undefined){
+        res.send('no movie exists with this id')
+    }
+     res.send(reqfilm)
+    //  console.log(reqfilm)
+    })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 router.get('/test-me', function (req, res) {
     console.log('My batch is', abc.name)
     abc.printName()
