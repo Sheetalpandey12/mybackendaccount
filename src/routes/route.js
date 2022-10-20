@@ -1,4 +1,4 @@
-const { application } = require('express');
+const { json } = require('express');
 const express = require('express');
 const router = express.Router();
 
@@ -39,9 +39,7 @@ const router = express.Router();
 //   const body = req.body
 
 
-        
-
-
+    
 
 // const player = players.find(x=>x.name===body.name)
 //    if(player){
@@ -55,46 +53,51 @@ const router = express.Router();
 
 
 
-    //  assignment 2 on post api
-    let persons= [
-      {
-      name: "PK",
-      age: 10,
-      votingStatus: false
-   },
-   {
-      name: "SK",
-      age: 20,
-      votingStatus: false
-   },
-   {
-      name: "AA",
-      age: 70,
-      votingStatus: false
-   },
-   {
-      name: "SC",
-      age: 5,
-      votingStatus: false
-   },
-   {
-      name: "HO",
-      age: 40,
-      votingStatus: false
-   }
-   ]
+//     //  assignment 2 on post api
+//     let persons= [
+//       {
+//       name: "PK",
+//       age: 10,
+//       votingStatus: false
+//    },
+//    {
+//       name: "SK",
+//       age: 20,
+//       votingStatus: false
+//    },
+//    {
+//       name: "AA",
+//       age: 70,
+//       votingStatus: false
+//    },
+//    {
+//       name: "SC",
+//       age: 5,
+//       votingStatus: false
+//    },
+//    {
+//       name: "HO",
+//       age: 40,
+//       votingStatus: false
+//    }
+//    ]
     
   
-router.post( "/votingage", function (req, res){
-  let age = req.query.age
-   let final = persons.filter ( a =>a.age>age )
-  final.forEach(a=>avotingStatus="true")
-  //for( i=0 ; i<final.length ; i++){
-    //  final[i].votingStatus="true"
-      //}
+ router.post("/person", function (req, res){
+   const votingAge = req.query.votingAge
+
+
+      const updatedPersons=[]
+   persons.forEach((person)=>{
+    if(person.age>votingAge){
+    person.votingStatus=true
+    updatedPerson.push(person)
+}
+
+   })
       console.log(persons)
-  res.send("voters list is updated" )
-})
+  res.send({updatedPersons :updatedPersons})
+ })
 
 
 
