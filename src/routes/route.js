@@ -1,71 +1,122 @@
+const { application } = require('express');
 const express = require('express');
 const router = express.Router();
 
 
-// let player =
-// {
-//     "name": "manish",
-//     "dob": "1/1/1995",
-//     "gender": "male",
-//     "city": "jalandhar",
-//     "sports": [
-//     "swimming"
-//     ]
-//     }
-//     ,
+// let players =
+// [
 //     {
-//         name : "manish",
+//         "name": "manish",
 //         "dob": "1/1/1995",
 //         "gender": "male",
 //         "city": "jalandhar",
 //         "sports": [
-//         "swimming"
+//             "swimming"
 //         ]
-//         }
+//     },
+//     {
+//         "name": "gopal",
+//         "dob": "1/09/1995",
+//         "gender": "male",
+//         "city": "delhi",
+//         "sports": [
+//             "soccer"
+//         ],
+//     },
+//     {
+//         "name": "lokesh",
+//         "dob": "1/1/1990",
+//         "gender": "male",
+//         "city": "mumbai",
+//         "sports": [
+//             "soccer"
+//         ],
+//     },
+// ]
+ 
 
-// problem 1
-// -write an api which gives the missing number in an array of integers starting 
-// from 1….e.g [1,2,3,5,6,7] answer = 4 is missing
-
-//      router.get("/solution", function (req, res) {
-//          let arr= [1,2,3,5,6,7]
-//          expectedNumber = arr.length+1;    // 6+1 = 7
-//          totalSum = expectedNumber*(expectedNumber+1)/2; //  7*7+1/2 = 28   n(n+1)/2
-//           console.log(totalSum);
-//          let sum = 0;
-//          for(let i=0;i<arr.length;i++){
-//             sum = sum +arr[i]
-//          }
-//          console.log(sum)   // 1+2+3+5+6+7 =24 
-// ///LOGIC WILL GO HERE
-//         res.send( {" missing number is": + totalSum - sum } );
-// });
-
-
-
-
-// problem 2
-// -write an api which gives the missing number in an array of integers
-// starting from anywhere….e.g [33,34, 35, 37, 38]: 36 is missing
-
-router.get("/solution2", function (req, res) {
-//logic : sum of n consecutive numbers is [ n * (first + last) / 2 ]..so get sum of all
-//numbers in array. now take sum of n consecutive numbers.. n would be length+1 as 1 number is missing
-let arr= [33, 34, 35, 37, 38]
-    let n = arr.length+1;    // 5+1 = 6
-     totalSum = (arr[0]+arr[arr.length-1])*n/2   /// // no(no+1)/2  = 213
-            console.log(totalSum);
-                     let sum = 0;
-          for(let i=0;i<arr.length;i++){
-            sum = sum +arr[i]   
-         }
-          console.log(sum)   // 33+34+35+37+38 = 177
-// ///LOGIC WILL GO HERE
-         res.send( {" missing number is": + totalSum - sum } );
- });
+// router.post("/players", function(req, res) {
+//   const body = req.body
 
 
         
+
+
+
+// const player = players.find(x=>x.name===body.name)
+//    if(player){
+//     res.send({ message: "player already exist"})
+//    }else{
+//     player.push(body)
+//     res.send(player)
+//    }
+
+  
+
+
+
+    //  assignment 2 on post api
+    let persons= [
+      {
+      name: "PK",
+      age: 10,
+      votingStatus: false
+   },
+   {
+      name: "SK",
+      age: 20,
+      votingStatus: false
+   },
+   {
+      name: "AA",
+      age: 70,
+      votingStatus: false
+   },
+   {
+      name: "SC",
+      age: 5,
+      votingStatus: false
+   },
+   {
+      name: "HO",
+      age: 40,
+      votingStatus: false
+   }
+   ]
+    
+   
+
+// router.post('/person', function(req,res)){
+//    const body=req.body
+//    const person = person.find(x=>x.name===body.age<18)  
+// }
+// if (person){
+//   res.send({})
+}
+
+router.post( "/person", function (req, res){
+  let body = req.query.body
+
+  // let finArr= myArr.filter ( ele => ele>input )
+  let personvotingage= []
+  for( i=0 ; i<person.length ; i++){
+      if ( person[i] > body )     personvotingage.push( person[i])
+  }
+  res.send( {data: personvotingage , status: true})
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
