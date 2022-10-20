@@ -3,51 +3,53 @@ const express = require('express');
 const router = express.Router();
 
 
-// let players =
-// [
-//     {
-//         "name": "manish",
-//         "dob": "1/1/1995",
-//         "gender": "male",
-//         "city": "jalandhar",
-//         "sports": [
-//             "swimming"
-//         ]
-//     },
-//     {
-//         "name": "gopal",
-//         "dob": "1/09/1995",
-//         "gender": "male",
-//         "city": "delhi",
-//         "sports": [
-//             "soccer"
-//         ],
-//     },
-//     {
-//         "name": "lokesh",
-//         "dob": "1/1/1990",
-//         "gender": "male",
-//         "city": "mumbai",
-//         "sports": [
-//             "soccer"
-//         ],
-//     },
-// ]
- 
 
-// router.post("/players", function(req, res) {
-//   const body = req.body
+let players =
+    [
+        {
+            "name": "manish",
+            "dob": "1/1/1995",
+            "gender": "male",
+            "city": "jalandhar",
+            "sports": [
+                "swimming"
+            ]
+        },
+        {
+            "name": "gopal",
+            "dob": "1/09/1995",
+            "gender": "male",
+            "city": "delhi",
+            "sports": [
+                "soccer"
+            ]
+        },
+        {
+            "name": "lokesh",
+            "dob": "1/1/1990",
+            "gender": "male",
+            "city": "mumbai",
+            "sports": [
+                "soccer"
+            ]
+        },
+    ]
 
 
+router.post("/player", function (req, res) {
+
+    let obj = req.body.element
+
+for(i of players){
+    if (i.name == obj.name) {
+         return res.send({ msg: "name already exits" })
+    }}
     
-
-// const player = players.find(x=>x.name===body.name)
-//    if(player){
-//     res.send({ message: "player already exist"})
-//    }else{
-//     player.push(body)
-//     res.send(player)
-//    }
+        players.push(obj)
+        console.log(obj)
+        res.send({ msg: players, status: true })
+    
+})
 
   
 
@@ -88,10 +90,10 @@ const router = express.Router();
 
 
       const updatedPersons=[]
-   persons.forEach((person)=>{
-    if(person.age>votingAge){
-    person.votingStatus=true
-    updatedPerson.push(person)
+   persons.forEach((persons)=>{
+    if(persons.age>votingAge){
+    persons.votingStatus=true
+    updatedPersons.push(person)
 }
 
    })
