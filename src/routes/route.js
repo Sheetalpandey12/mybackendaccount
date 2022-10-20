@@ -44,7 +44,7 @@ const router = express.Router();
 
 
 
-Q2.
+// problem 2
 // -write an api which gives the missing number in an array of integers
 // starting from anywhere….e.g [33,34, 35, 37, 38]: 36 is missing
 
@@ -53,7 +53,7 @@ router.get("/solution2", function (req, res) {
 //numbers in array. now take sum of n consecutive numbers.. n would be length+1 as 1 number is missing
 let arr= [33, 34, 35, 37, 38]
     let n = arr.length+1;    // 5+1 = 6
-     totalSum = (arr[0]*+arr[arr.length-1])*n/2   /// // no(no+1)/2  = 213
+     totalSum = (arr[0]+arr[arr.length-1])*n/2   /// // no(no+1)/2  = 213
             console.log(totalSum);
                      let sum = 0;
           for(let i=0;i<arr.length;i++){
