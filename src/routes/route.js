@@ -84,25 +84,16 @@ const router = express.Router();
    }
    ]
     
-   
-
-// router.post('/person', function(req,res)){
-//    const body=req.body
-//    const person = person.find(x=>x.name===body.age<18)  
-// }
-// if (person){
-//   res.send({})
-}
-
-router.post( "/person", function (req, res){
-  let body = req.query.body
-
-  // let finArr= myArr.filter ( ele => ele>input )
-  let personvotingage= []
-  for( i=0 ; i<person.length ; i++){
-      if ( person[i] > body )     personvotingage.push( person[i])
-  }
-  res.send( {data: personvotingage , status: true})
+  
+router.post( "/votingage", function (req, res){
+  let age = req.query.age
+   let final = persons.filter ( a =>a.age>age )
+  final.forEach(a=>avotingStatus="true")
+  //for( i=0 ; i<final.length ; i++){
+    //  final[i].votingStatus="true"
+      //}
+      console.log(persons)
+  res.send("voters list is updated" )
 })
 
 
