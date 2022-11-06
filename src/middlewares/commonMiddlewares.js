@@ -3,7 +3,7 @@ let checkHeader=async function(req,res,next){
     let headerType = headers["isFreeAppUser"]
     if(!headerType) {
         headerType = headers["isfreeappuser"]
-    }
+    } 
     if(!headerType) {
         return res.send({status: false, message: "A mandatory header is missing"})
     }

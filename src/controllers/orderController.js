@@ -32,7 +32,7 @@ const placeOrder = async function (req, res) {
     } else {
     // Free app
         data.amount = 0
-        data.isFreeAppUser = true
+        data.isFreeAppUser = true    
 
     let saveData = await orderModel.create(data)
     res.send({ msg: saveData })

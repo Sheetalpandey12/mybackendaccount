@@ -1,16 +1,16 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
-const productSchema = mongoose.Schema({
-  name: {
-    type: String,
-    required: [true, "Please enter Product name"],
-    lowercase: true,
-  },
-  category: String,
-  price: {
-    type: String,
-    required: true,
-  },
-});
+const productSchema = new mongoose.Schema( {
+    name:String,
+	category:String,
+	price:{
+        type:Number,
+        default:70
+    }                   //mandatory property
 
-module.exports = mongoose.model("Product", productSchema);
+
+
+}, { timestamps: true });
+
+
+module.exports = mongoose.model('productcollection', productSchema) //productcollections
