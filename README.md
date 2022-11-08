@@ -9,20 +9,20 @@ Think of this like getting an ID card the first day of your college and then sho
 
 ## Assignment
 - For this assignment you have to create a new branch - assignment/auth-1
-- Your user document should look like this
+git- Your user document should look like this
 ```
  	{
-    "_id" : ObjectId("6226e3d2b98f22b349ca58be"),
+    "_id" : ObjectId("6226e3d2b98f22b349ca58be"),    
     "firstName" : "Sabiha",
     "lastName" : "Khan",
     "mobile" : "9898909087",
     "emailId" : "sk@gmail.com",
-    "password" : "password123",
+    "password" : "password123",    
     "gender" : "female",
 	"isDeleted": false, //default value is false 
     "age" : 12,
     "createdAt" : ISODate("2022-03-08T05:04:18.737Z"),
-    "updatedAt" : ISODate("2022-03-08T05:04:18.737Z"),
+    "updatedAt" : ISODate("2022-03-08T05:04:18.737Z"), 
     "__v" : 0
 }
 ```
