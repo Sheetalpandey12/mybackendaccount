@@ -2,11 +2,12 @@ const jwt = require("jsonwebtoken");
 const userModel = require("../models/userModel");
 
 const createUser = async function (req, res) {
+  let data = req.body
   let savedData = await userModel.create(data);
   res.send({ msg: savedData });
 };
 
-const loginUser = async function (req, res) {
+const loginUser = async function (req, res) { 
   let userName = req.body.emailId;
   let password = req.body.password;
 
@@ -29,12 +30,11 @@ const loginUser = async function (req, res) {
 };
 
 const getUserData = async function (req, res) {
-  let userId = req.params.userId;
-  let userDetails = await userModel.findById(userId);
-  if (!userDetails)
-    return res.send({ status: false, msg: "No such user exists" });
-    res.send({ status: true, data: userDetails });
-};
+
+  let userId = req.params.userId
+  let data = await userModel.findById(userId)
+  res.send({ Status: "The Token is Valid", UserData: data })
+}
 
 const updateUser = async function (req, res) {
  let userId = req.params.userId;
@@ -60,10 +60,20 @@ const postMessage = async function (req, res) {
 }
 
 
+const deleteData = async function (req, res) {
+  let userId = req.params.userId
+  
+  let update = await userModel.findByIdAndUpdate(userId, { isDeleted: true }, { new: true })
+  res.send(update)
+}
+
+
+
 
 
 module.exports.createUser = createUser;
 module.exports.getUserData = getUserData;
 module.exports.updateUser = updateUser;
 module.exports.loginUser = loginUser;
-module.exports.postMessage = postMessage
+module.exports.postMessage = postMessage;
+module.exports.deleteData = deleteData;

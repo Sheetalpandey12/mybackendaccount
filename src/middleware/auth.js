@@ -1,32 +1,49 @@
 const jwt = require("jsonwebtoken");
 
-const authenticate = function(req, res, next) {
-    try {
-        let token = req.headers["x-Auth-token"];   
-    if(! token) token= req.headers["x-auth-token"];
-    if (!token) return res.status(404).send({ status: false, msg: "token must be present" });
+const Authentication=async function(req,res,next){ 
+   try {  
+  let token=req.headers["x-auth-Token"]
+  if(!token)token=req.headers["x-auth-token"]
+  if(!token) return res.send({status:false,msg:"Token is required."}) 
   
-  let decodedToken = jwt.verify(token, "lithium-sheetal");
-  if (!decodedToken) {
-    return res.send({ status: false, msg: "token is invalid" });
-  }
-    req.loggedId = decodedToken.userId;
+  let decodeToken=jwt.verify(token,"lithium-sheetal")
+  req["decodeToken"]=decodeToken
+
+  if(!decodeToken) return res.send({status:false,msg:"Token is invlid"})
+   
   next()
-} catch (err){
-    res.send({msg:"Accessv Denied"});
+}
+catch (err){
+ res.send({msg:err.message})
 }
 };
 
 
-const authorise = function(req, res, next) {
-     let checkAuthorise = req.params.userId;
-     if(checkAuthorise !== req.loggdId){
-        return res.status(404).send({msg: "oooh!you are not valid user"});
-     }
-    next()
-};
+const authorization = function(req, res, next){
+  try {
+  let token = req.headers["x-auth-token"]
+  if(!token){
+      return res.send("Header is not avilable")
+  }
+  
+  let decode = jwt.verify(token, "lithium-sheetal")
+  if(!decode){
+      return res.send("invalid Token");
+  }  
+  let usertobe = req.params.userId
+  let userlogin = decode
+  if(usertobe != userlogin){
+      res.send({msg: "Its Not your Id"})  
+  }
+  next()    
+}
+catch (err){
+  res.send({msg:err.message});  
+}
+}  
+
+module.exports.Authentication=Authentication;
+module.exports.authorization=authorization;   
 
 
-
-module.exports.authenticate = authenticate;
-module.exports.authorise = authorise;
+      
