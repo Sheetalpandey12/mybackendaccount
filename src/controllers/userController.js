@@ -29,12 +29,30 @@ const loginUser = async function (req, res) {
   res.send({ status: true, data: token });
 };
 
-const getUserData = async function (req, res) {
 
-  let userId = req.params.userId
-  let data = await userModel.findById(userId)
-  res.send({ Status: "The Token is Valid", UserData: data })
-}
+const getUserData = async function (req, res) {
+      let token = req.headers["x-Auth-token"];
+      if (!token) token = req.headers["x-auth-token"];
+    
+      //If no token is present in the request header return error
+      if (!token) return res.send({ status: false, msg: "token must be present" });
+    
+      console.log(token);
+      
+    
+      let decodedToken = jwt.verify(token, "lithium-sheetal");
+      if (!decodedToken)
+        return res.send({ status: false, msg: "token is invalid" });
+    
+      let userId = req.params.userId;
+      let userDetails = await userModel.findById(userId);
+      if (!userDetails)
+        return res.send({ status: false, msg: "No such user exists" });
+    
+      res.send({ status: true, data: userDetails });
+     };
+
+
 
 const updateUser = async function (req, res) {
  let userId = req.params.userId;
@@ -47,7 +65,7 @@ const updateUser = async function (req, res) {
   let updatedUser = await userModel.findOneAndUpdate({ _id: userId }, userData,{nre:true});
   res.send({ status: true , data: updatedUser });
 };
-
+     
 
 
 const postMessage = async function (req, res) {
@@ -60,12 +78,7 @@ const postMessage = async function (req, res) {
 }
 
 
-const deleteData = async function (req, res) {
-  let userId = req.params.userId
-  
-  let update = await userModel.findByIdAndUpdate(userId, { isDeleted: true }, { new: true })
-  res.send(update)
-}
+
 
 
 
@@ -76,4 +89,4 @@ module.exports.getUserData = getUserData;
 module.exports.updateUser = updateUser;
 module.exports.loginUser = loginUser;
 module.exports.postMessage = postMessage;
-module.exports.deleteData = deleteData;
+
