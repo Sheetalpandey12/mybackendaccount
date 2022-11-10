@@ -17,5 +17,6 @@ router.get("/users/:userId",midd.Authentication,midd.authorization, userControll
 router.post("/users/:userId/posts",midd.Authentication,midd.authorization,userController.postMessage);
 
 router.put("/users/:userId",midd.Authentication,midd.authorization, userController.updateUser);
+router.delete("/users/:userId",midd.Authentication,midd.authorization, userController.deletedData);
 
 module.exports = router;    

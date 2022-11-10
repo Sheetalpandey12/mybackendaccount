@@ -1,7 +1,7 @@
 const jwt = require("jsonwebtoken");
 const userModel = require("../models/userModel");
 
-const createUser = async function (req, res) {
+const createUser = async function (req, res) {  
   let data = req.body
   let savedData = await userModel.create(data);
   res.send({ msg: savedData });
@@ -62,7 +62,7 @@ const updateUser = async function (req, res) {
     return res.send({status:false,msg:"No such user exists"});
   }
   let userData = req.body;
-  let updatedUser = await userModel.findOneAndUpdate({ _id: userId }, userData,{nre:true});
+  let updatedUser = await userModel.findOneAndUpdate({ _id: userId }, userData,{new:true});
   res.send({ status: true , data: updatedUser });
 };
      
@@ -77,7 +77,17 @@ const postMessage = async function (req, res) {
      return res.send({status: true, data: updatedUser})
 }
 
+const deletedData = async function (req, res) {
+  let userId = req.params.userId;
+  let user = await userModel.findById(userId);
+  //Return an error if no user with the given id exists in the db
+  if (!user) {
+    return res.send("No such user exists");   
+  }
 
+  let updatedData = await userModel.findOneAndUpdate({ _id: userId },{isDeleted:true},{new:true});
+  res.send({ status:true, data:updatedData }); 
+};
 
 
 
@@ -89,4 +99,5 @@ module.exports.getUserData = getUserData;
 module.exports.updateUser = updateUser;
 module.exports.loginUser = loginUser;
 module.exports.postMessage = postMessage;
+module.exports. deletedData= deletedData;
 
